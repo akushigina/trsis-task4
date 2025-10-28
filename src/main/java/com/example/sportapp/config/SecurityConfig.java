@@ -23,14 +23,14 @@ public class SecurityConfig {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/success", true) // перенаправляем на общий success handler
                 .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/logout")                    // URL для выхода
-                .logoutSuccessUrl("/login?logout")       // перенаправление на логин после выхода
-                .invalidateHttpSession(true)             // очистить сессию
-                .deleteCookies("JSESSIONID")             // удалить куки
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
+                .logoutSuccessUrl("/login?logout=true")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .permitAll();
 
         return http.build();
@@ -46,8 +46,8 @@ public class SecurityConfig {
                         .build(),
                 User.withDefaultPasswordEncoder()
                         .username("admin")
-                        .password("adminpass")  // исправлена опечатка
-                        .roles("USER", "ADMIN")
+                        .password("adminpass")
+                        .roles("ADMIN")
                         .build()
         );
     }
