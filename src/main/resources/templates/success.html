@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Успешный вход</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .success-message { max-width: 500px; margin: 0 auto; text-align: center; }
+        .btn { padding: 10px 20px; background: #dc3545; color: white;
+               text-decoration: none; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="success-message">
+    <h2>✅ Успешный вход в систему спортивных соревнований!</h2>
+    <p>Добро пожаловать в систему управления спортивными событиями!</p>
+    <p>Вы успешно авторизовались как: <strong th:text="${#authentication.name}">User</strong></p>
+
+    <h3>Доступные функции:</h3>
+    <ul style="text-align: left;">
+        <li>Просмотр спортивных событий</li>
+        <li>Управление участниками</li>
+        <li>Регистрация на соревнования</li>
+    </ul>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Выйти из системы" class="btn"/>
+    </form>
+</div>
+</body>
+</html>

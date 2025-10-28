@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная - Спортивные события</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .btn { background: #dc3545; color: white; padding: 10px 20px;
+               border: none; cursor: pointer; margin-top: 20px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🏆 Система спортивных соревнований</h1>
+    <h2 style="color: green;">✅ Вы успешно вошли в систему!</h2>
+    <p>Теперь у вас есть доступ ко всем функциям:</p>
+    <ul>
+        <li>Создание спортивных событий</li>
+        <li>Регистрация участников</li>
+        <li>Просмотр результатов</li>
+    </ul>
+    <form action="/logout" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <button type="submit" class="btn">Выйти из системы</button>
+    </form>
+</div>
+</body>
+</html>
